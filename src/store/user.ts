@@ -20,7 +20,10 @@ export const userSlice = createSlice({
       state: UserState,
       action: PayloadAction<UserState>
     ) {
-      state = action.payload;
+      // https://www.youtube.com/watch?v=k68j9xlbHHk&t=597s
+      state.age = action.payload.age;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
     }
   }
 })
