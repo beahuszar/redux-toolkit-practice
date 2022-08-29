@@ -24,11 +24,17 @@ export const userSlice = createSlice({
       state.age = action.payload.age;
       state.name = action.payload.name;
       state.email = action.payload.email;
+    },
+    logout(state: UserState){
+      state.name = userInitialState.name
+      state.age = userInitialState.age
+      state.email = userInitialState.email
     }
   }
 })
 
 export const {
-  login
+  login,
+  logout
 } = userSlice.actions
 export const {reducer: userReducer} = userSlice
