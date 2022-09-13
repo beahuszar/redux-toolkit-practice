@@ -17,9 +17,9 @@ export interface Cat {
 
 interface CatState {
   meta: AppMeta;
-  cats: {
-    currentCat: Cat | null;
-    fedCats: Cat[]
+  categories: {
+    stray: Cat | null;
+    adopted: Cat[]
   };
 }
 
@@ -31,9 +31,9 @@ const catInitialState: CatState = {
       message: ''
     }
   },
-  cats: {
-    currentCat: null,
-    fedCats: []
+  categories: {
+    stray: null,
+    adopted: []
   }
 }
 
@@ -43,16 +43,27 @@ export const catSlice = createSlice({
   reducers: {
     loadRandomCat(state) {
       state.meta.isLoading = true
-      state.cats.currentCat = null
+      state.categories.stray = null
     },
     showCurrentCat(state, action: PayloadAction<Cat>) {
       state.meta.isLoading = false
-      state.cats.currentCat = action.payload
+      state.categories.stray = action.payload
     },
     catLoadFailed(state, action: PayloadAction<string>) {
       state.meta.isLoading = false
       state.meta.error.hasError = true
       state.meta.error.message = action.payload
+    },
+    feedCat(state) {
+      if (state.categories.stray) {
+        state.categories.stray.isFed = true
+      }
+    },
+    adoptCat(state) {
+      if (state.categories.stray) {
+        state.categories.adopted.push(state.categories.stray)
+        state.categories.stray = null
+      }
     }
   }
 })
@@ -60,6 +71,8 @@ export const catSlice = createSlice({
 export const {
   loadRandomCat,
   showCurrentCat,
-  catLoadFailed
+  catLoadFailed,
+  feedCat,
+  adoptCat
 } = catSlice.actions
 export const {reducer: catReducer} = catSlice

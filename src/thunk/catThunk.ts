@@ -28,10 +28,10 @@ export function fetchCat(): CatThunk {
       const response = await fetch(`${extraArgument.nameRoot}?id=${Math.ceil(Math.random() * 10)}`)
       const data = await response.json()
       const cat: Cat = {
-        name: data.userName,
+        name: data[0].username,
         image: catImage,
         isFed: false,
-        id: state.cat.cats.fedCats.length + 1
+        id: state.cat.categories.adopted.length + 1
       }
 
       dispatch(showCurrentCat(cat))
