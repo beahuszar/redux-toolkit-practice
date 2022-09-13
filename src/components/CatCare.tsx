@@ -33,6 +33,14 @@ export const CatCare: React.FC = () => {
       <button type="button" onClick={handleFetch}>Ccccc..</button>
       {cat.categories.stray && !cat.categories.stray.isFed && <button type="button" onClick={handleFeed}>Feed current cat</button>}
       {cat.categories.stray?.isFed && <button type="button" onClick={handleAdopt}>Adopt cat</button>}
+      <div>
+        {cat.categories.adopted.length > 0 && (cat.categories.adopted.map(cat => (
+          <div>
+            <img alt={cat.name} src={cat.image}/>
+            <h3>{cat.name}</h3>
+          </div>
+        )))}
+      </div>
     </div>
   )
 }
