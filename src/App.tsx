@@ -3,6 +3,7 @@ import './App.css';
 import {Profile} from "./components/Profile";
 import {Login} from "./components/Login";
 import {ChangeColor} from "./components/ChangeColor";
+import {CatCare} from "./components/CatCare";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           shared actions
           Thunk
       */}
+      <CatCare/>
     </div>
   );
 }
