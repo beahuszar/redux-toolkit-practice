@@ -1,11 +1,11 @@
-import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AppMeta {
   isLoading: boolean;
   error: {
     hasError: boolean;
     message: string;
-  }
+  };
 }
 
 export interface Cat {
@@ -19,7 +19,7 @@ interface CatState {
   meta: AppMeta;
   categories: {
     stray: Cat | null;
-    adopted: Cat[]
+    adopted: Cat[];
   };
 }
 
@@ -28,51 +28,51 @@ const catInitialState: CatState = {
     isLoading: false,
     error: {
       hasError: false,
-      message: ''
-    }
+      message: "",
+    },
   },
   categories: {
     stray: null,
-    adopted: []
-  }
-}
+    adopted: [],
+  },
+};
 
 export const catSlice = createSlice({
-  name: 'cat',
+  name: "cat",
   initialState: catInitialState,
   reducers: {
     loadRandomCat(state) {
-      state.meta.isLoading = true
-      state.categories.stray = null
+      state.meta.isLoading = true;
+      state.categories.stray = null;
     },
     showCurrentCat(state, action: PayloadAction<Cat>) {
-      state.meta.isLoading = false
-      state.categories.stray = action.payload
+      state.meta.isLoading = false;
+      state.categories.stray = action.payload;
     },
     catLoadFailed(state, action: PayloadAction<string>) {
-      state.meta.isLoading = false
-      state.meta.error.hasError = true
-      state.meta.error.message = action.payload
+      state.meta.isLoading = false;
+      state.meta.error.hasError = true;
+      state.meta.error.message = action.payload;
     },
     feedCat(state) {
       if (state.categories.stray) {
-        state.categories.stray.isFed = true
+        state.categories.stray.isFed = true;
       }
     },
     adoptCat(state) {
       if (state.categories.stray) {
-        state.categories.adopted.push(state.categories.stray)
-        state.categories.stray = null
+        state.categories.adopted.push(state.categories.stray);
+        state.categories.stray = null;
       }
-    }
-  }
-})
+    },
+  },
+});
 
 export const {
   loadRandomCat,
   showCurrentCat,
   catLoadFailed,
   feedCat,
-  adoptCat
-} = catSlice.actions
-export const {reducer: catReducer} = catSlice
+  adoptCat,
+} = catSlice.actions;
+export const { reducer: catReducer } = catSlice;

@@ -1,9 +1,9 @@
-import React from 'react';
-import './App.css';
-import {Profile} from "./components/Profile";
-import {Login} from "./components/Login";
-import {ChangeColor} from "./components/ChangeColor";
-import {CatCare} from "./components/CatCare";
+import React from "react";
+import "./App.css";
+import { CatCare } from "./components/CatCare";
+import { ChangeColor } from "./components/ChangeColor";
+import { Login } from "./components/Login";
+import { Profile } from "./components/Profile";
 
 function App() {
   return (
@@ -12,12 +12,9 @@ function App() {
       <Login />
       <ChangeColor />
       {/* TODO
-          createAction()
-          createReducer()
           shared actions
-          Thunk
       */}
-      <CatCare/>
+      <CatCare />
     </div>
   );
 }
