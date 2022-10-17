@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {changeColor} from "../store/theme";
+import {changeColor} from "../store/theme.reducer";
 
 export const ChangeColor: React.FC = () => {
   const dispatch = useDispatch()
